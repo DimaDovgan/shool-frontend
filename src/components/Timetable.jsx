@@ -7,6 +7,7 @@ import {updatePositionById ,updatePositionByIdDelete} from '../redux/Acions/Acti
 import { useEffect } from "react"
 import { readingHost } from "../redux/Acions/Actions"
 import { useNavigate } from "react-router-dom";
+import "./style.css"
 
 export const Timetable = () => {
   const navigation = useNavigate();
@@ -32,9 +33,9 @@ export const Timetable = () => {
     const goToDetails=(id)=>{
       navigation(`/lesonDetails/${id}`);
   }
-return <div><h1>Розклад</h1>
+return <div className='hero_container '><h1>Розклад</h1>
 
-<Table  bordered >
+<Table  bordered  className='dropdawn_reset'>
       <thead>
         <tr>
           <th>#</th>
@@ -73,44 +74,6 @@ return <div><h1>Розклад</h1>
                 }
               
               }}
-
-         
-
-
-
-
-
-
-
-          
-            {/* let someDate =lesonsArr.filter(item => {
-                 const secondBool=item.tabPosition.filter(ggg=>{
-                  console.log("ggg",ggg)
-                const testBool=(ggg.date===weekDate&&ggg.time===weekLeson);
-                console.log("testBool",testBool)
-                return testBool;
-              })
-              console.log("secondBool",secondBool)
-              if(secondBool.length===0){
-                return false
-              }
-              return true
-              
-
-
-            })
-            console.log("someDate",someDate) */}
-
-
-
-
-          {/* if(someDate.length>0){
-
-            let superLeson = someDate.find(item => item.tabPosition.time === weekLeson);
-            if(superLeson){
-              return <td>{superLeson.title}</td>
-            }
-          } */}
 
 
             return <td>

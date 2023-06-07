@@ -87,5 +87,20 @@ export const updatePositionByIdDelete = createAsyncThunk(
     }
   }
 )
+export const uploadFile = createAsyncThunk(
+  'leson/getLesonById/uploadFile',
+  async ({id,formData,fileName}) => {
+    console.log("is file",formData)
+    const data = await axios.post(`/api/leson/${id}/uploadFile`,formData, {headers: { "Content-Type": "multipart/form-data" }},);
+      // const data=await fetch(`http://localhost:3002/api/leson/${id}/uploadFile`,{
+      //   method:'POST',
+      //   body:formData
+    
+      // })
+    if (data) {
+        return data
+    }
+  }
+)
 
 

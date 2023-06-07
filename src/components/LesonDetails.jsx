@@ -11,6 +11,7 @@ export const LesonDetails = () => {
     const { id } = useParams();
     const [title, setTitle] = useState(null);
         const [teacher, setTeacher] = useState(null);
+        const [filesList, setFilesList] = useState([]);
         // const [date, setDate] = useState(null);
         // const [time, setTime] = useState(null);
         const [lesonLink, setLesonLink] = useState(null);
@@ -29,6 +30,7 @@ export const LesonDetails = () => {
   useEffect(() => {
     setTitle(user.title);
     setTeacher(user.teacher);
+    setFilesList(user.lesonFilesList)
     // setDate(user.date);
     // setTime(user.time);
     setLesonLink(user.lesonLink);
@@ -64,6 +66,23 @@ export const LesonDetails = () => {
         dispatch(updateLesonById({id,title,teacher,lesonLink}))
         console.log("leson Change")
     }
+    const downloadFile=async (file)=>{
+      // event.preventDefault();
+      const data=await fetch(`${file.url}`,{
+        method:'GET'
+      })
+      if(data.status===200){
+        const blob=await data.blob()
+        const downloadUrl=window.URL.createObjectURL(blob);
+        const link=document.createElement('a');
+        link.href=downloadUrl;
+        link.download=file.title;
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+      }
+      console.log(data);
+    }
     return <div>{
         boolCorr ? <Form className=" form-floating mb-3 " onSubmit={changeLeson} >
   <div className=" pl-10 col-auto mt-3">
@@ -85,22 +104,6 @@ export const LesonDetails = () => {
 
       />
     </div>
-    {/* <div className="col-auto mt-3">
-    <label  className="form-label">Leson date :  </label>
-            <input  name="date"
-       value={date}
-      onChange={hendelChange}
-
-      />
-    </div>
-    <div className="col-auto mt-3">
-    <label  className="form-label">Leson time :  </label>
-            <input name="time"
-       value={time}
-       onChange={hendelChange}
-
-      />
-    </div> */}
     <div className="col-auto mt-3">
     <label  className="form-label">Leson link :  </label>
             <input name="lesonLink"
@@ -108,7 +111,21 @@ export const LesonDetails = () => {
        onChange={hendelChange}
 
       />
-    </div>
+      </div>
+{filesList && 
+    <div>
+      <p>Files</p>
+      <ul>
+        {filesList.map(file=><li onClick={()=>downloadFile(file)}>{file.title}  </li>)}
+
+        {/* "https://res.cloudinary.com/dd-com/raw/upload/v1686118161/7906134fd0d3e99fc311828d817fe2a2_zqk83d.pdf" */}
+
+      </ul>
+
+    </div> 
+    
+    }
+   
   
   <div className="col-auto">
     <button type="submit" className="btn btn-primary mb-3 mt-3">update leson</button>

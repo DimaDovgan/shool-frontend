@@ -48,7 +48,7 @@ export const RegistarationForm = () => {
         
     }
 
-    return <div className="pt-5 pb-5 bg-warning bg-opacity-25" ><Form  onSubmit={submiteForm}>
+    return <div className="hero_container" ><Form  onSubmit={submiteForm}>
         <div className="mb-3 ">
   <label className="form-label">Name</label>
   <input  className="form-control" value={name} name="name" onChange={onHeandelChange} />

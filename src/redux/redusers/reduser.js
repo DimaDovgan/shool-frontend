@@ -1,4 +1,4 @@
-import {addItems,delateContact,FilterValueState,readingHost,getLesonById,updateLesonById,updatePositionById,updatePositionByIdDelete} from '../Acions/Actions'
+import {addItems,delateContact,FilterValueState,readingHost,getLesonById,updateLesonById,updatePositionById,updatePositionByIdDelete,uploadFile} from '../Acions/Actions'
 // import {createReducer} from '@reduxjs/toolkit';
 // import { combineReducers } from 'redux'
 //import PhoneSlice from '../Acions/Actions'
@@ -11,7 +11,8 @@ const SholeSlice = createSlice({
     lesons: [],
     filter: '',
     boolforCorrection:false,
-    lesonForCorrection:{}
+    lesonForCorrection:{},
+    files:{},
   },
   reducers: {
     resetItem: (state) => {
@@ -65,7 +66,8 @@ const SholeSlice = createSlice({
         }
         
       }
-    },[updatePositionByIdDelete.fulfilled]: (state, { payload }) => {
+    },
+    [updatePositionByIdDelete.fulfilled]: (state, { payload }) => {
       if (payload) {
         const foo=state.lesons.findIndex(item =>item._id === payload._id);
         
@@ -76,9 +78,20 @@ const SholeSlice = createSlice({
         }
         
       }
-    }
-  }
-})
+    },
+    [uploadFile.fulfilled]: (state, { payload }) => {
+      console.log("state",state)
+      if (payload.data) {
+          const foo=state.lesons.findIndex(item =>item._id === payload.data._id);
+          
+          if(foo){
+            state.lesons[foo]=payload.data;
+            console.log("payload",payload.data);
+          console.log("state",state.lesons[foo]);
+      }
+    }}
+  
+  }})
 // const { action, reducers } = PhoneSlice;
 export const reduserff= SholeSlice.reducers;
  const ShoolSliceReduser = SholeSlice.reducer;

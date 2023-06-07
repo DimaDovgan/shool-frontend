@@ -4,6 +4,7 @@ import { login,googleLogin } from "../redux/Acions/ActionForLogin";
 import { useNavigate } from 'react-router-dom';
 import { Button, Form } from 'react-bootstrap';
 import { useLocation } from 'react-router-dom';
+import "./style.css"
 // Client ID   224211115580-o699c46sflftm8473r6e4bv4kpulkpvk.apps.googleusercontent.com
 //  Client secret   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
 
@@ -71,7 +72,7 @@ export const LoginForm = () => {
    })
 //   var accessToken=gapi.auth.getToken().access_token;
 // console.log(accessToken);
-    return <div className="pt-5 pb-5 bg-warning bg-opacity-25 "><Form  onSubmit={submiteForm}>
+    return <div className="hero_container  "><Form  onSubmit={submiteForm}>
         <div className="mb-3 ">
   <label className="form-label">Email address</label>
   <input  className="form-control" value={email} name="email" onChange={onHeandelChange} placeholder="name@example.com"/>
@@ -80,22 +81,15 @@ export const LoginForm = () => {
   <label  className="form-label">Password</label>
   <input className="form-control" value={password} name="password" onChange={onHeandelChange}/>
         </div>
+        <a className="login_google"
+              href="http://localhost:3002/api/users/google"
+              
+            > Google authorization</a>
+
         <Button type="submit" variant="success">Submite</Button>
         
     </Form>
     <div>
-    <a
-              // href="https://team-project-kapusta.herokuapp.com/api/auth/google"
-              href="http://localhost:3002/api/users/google"
-              
-            > Google autorisation</a>
-    {/* <GoogleLogin
-    clientId="224211115580-o699c46sflftm8473r6e4bv4kpulkpvk.apps.googleusercontent.com"
-    buttonText="Login"
-    onSuccess={onSuccess}
-    onFailure={onFailure}
-    cookiePolicy={'single_host_origin'}
-  ></GoogleLogin> */}
     </div>
     </div>
 }

@@ -22,7 +22,7 @@ import { useEffect } from 'react';
 import { useDispatch } from "react-redux";
 import { reduserff } from './redux/redusers/reduser'
 import axios from "axios";
-
+import "./components/style.css"
 
 
 function App() {
@@ -46,6 +46,13 @@ function App() {
         <Route exact path='Timetable' restricted element={<PrivateContacts ><Timetable/></PrivateContacts>}/>
    
     </Routes>
+    <div className='footer'>
+    <p className='contact_title'>Контакти</p>
+    <ul className="contact_list">
+            <li className='contact_li'><a href = "mailto: dovgand887@gmail.com"><img src="gmail.png" className="contact_img"/></a></li>
+            <li className='contact_li'><a href='https://www.linkedin.com/in/dima-dovhan-71b219246/'><img src="linkidn.png" className="contact_img"/></a></li>
+    </ul>
+    </div>
   </>
    
   )
