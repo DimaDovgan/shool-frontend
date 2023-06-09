@@ -4,7 +4,7 @@ import { useNavigate,Navigate } from "react-router-dom";
 import {NotificationContainer, NotificationManager} from 'react-notifications';
 import cogoToast from 'cogo-toast';
 
-axios.defaults.baseURL = "http://localhost:3002";
+axios.defaults.baseURL = "https://online-school-gzzo.onrender.com";
 
 const token = {
   set(token) {
